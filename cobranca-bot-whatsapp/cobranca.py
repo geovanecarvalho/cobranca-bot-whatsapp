@@ -54,7 +54,10 @@ class MainWindow(QDialog):
 
                 elif horas >= 12 and horas < 18:
                     mensagem = f'Boa tarde! *{nome}*, aqui é do Cemitério Jardim Paraiso. Em nosso sistema, foram encontrados débitos anteriores à *{data_atual}*. Por favor entre em contato conosco para regularização. Caso já tenha sido pago, por favor desconsiderar.'
-
+                
+                elif horas >= 18:
+                    mensagem = f'Boa noite! *{nome}*, aqui é do Cemitério Jardim Paraiso. Em nosso sistema, foram encontrados débitos anteriores à *{data_atual}*. Por favor entre em contato conosco para regularização. Caso já tenha sido pago, por favor desconsiderar.'
+                
                 mensagem = quote(mensagem)
 
                 url = f'https://web.whatsapp.com/send?phone={telefone}&text={mensagem}'
@@ -73,7 +76,8 @@ class MainWindow(QDialog):
                     < 1
                 ):
                     self.contEnvio += 1
-                    self.contatos_nao_enviados.append([nome, telefone, 'enviado sucesso'])
+                    self.contatos_nao_enviados.append([nome, telefone, 'enviado sucesso', data.strftime('%d/%m/%y'), data.strftime('%H:%M')])
+                    
                     browser.find_element(
                         By.XPATH,
                         '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/div/span',
@@ -93,7 +97,7 @@ class MainWindow(QDialog):
                     sleep(2)
                 else:
                     self.contNaoEnvio += 1
-                    self.contatos_nao_enviados.append([nome, telefone, 'nao enviado'])
+                    self.contatos_nao_enviados.append([nome, telefone, 'nao enviado', data.strftime('%d/%m/%y'), data.strftime('%H:%M')])
 
             with open('./log/contatos_nao_enviados.csv', 'a', newline='') as file:
                 for contato in self.contatos_nao_enviados:
