@@ -1,3 +1,5 @@
 *__pycache__.py
 /dist
 /build
+cobranca.spec
+contatos_nao_enviados.csv
