@@ -86,18 +86,21 @@ class MainWindow(QDialog):
                                 data.strftime('%H:%M'),
                             ]
                         )
-
+                        # Click no link add arquivo 
                         browser.find_element(
                             By.XPATH,
-                            '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/div/span',
+                            '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/div/div/span',
                         ).click()
                         sleep(3)
+
+                        # Click no link para uploud de imagem
                         browser.find_element(
                             By.XPATH,
-                            '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/span/div/div/ul/li[1]/button/input',
+                            '//*[@id="main"]/footer/div[1]/div/span[2]/div/div[1]/div[2]/div/span/div/ul/div/div[1]/li/div/input',
                         ).send_keys(os.path.abspath('./img/jardimParaiso.png'))
                         sleep(3)
 
+                        # Click em enviar mensagem
                         browser.find_element(
                             By.XPATH,
                             '//*[@id="app"]/div/div/div[3]/div[2]/span/div/span/div/div/div[2]/div/div[2]/div[2]/div/div',
